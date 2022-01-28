@@ -79,8 +79,8 @@ public class MyMain {
         int index = 0;
         int idx1 = 0;
         int idx2 = 0;
-        while (index < arr.length){
-            if (idx1 >= arr1.length){
+        while (index < arr.length){ //while in bounds of the output array
+            if (idx1 >= arr1.length){ //dont run out
                 for (int i = idx2; i<arr2.length; i++){
                     arr[index] = arr2[i];
                     index++;
