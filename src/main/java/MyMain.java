@@ -14,17 +14,24 @@ public class MyMain {
 
     // Wrapper Method
     public static boolean binarySearch(int[] arr, int num) {
-        return binarySearchTR(arr, num, 0, arr.length-1);
+
+        return binarySearchTR(arr, num, 0, arr.length - 1);
     }
 
     // Tail recursive method:
     public static boolean binarySearchTR(int[] arr, int num, int lowerBound, int upperBound) {
-        // YOUR CODE HERE
-        return false;
+        int middle = lowerBound + (upperBound - lowerBound) / 2; //lowerBound plus half the distance between lower and upper
+        if (lowerBound > upperBound) {
+            return false;
+        }
+        if (arr[middle] < num) {
+            return binarySearchTR(arr, num, middle + 1, upperBound);
+        } else if (arr[middle] > num) {
+            return binarySearchTR(arr, num, lowerBound, middle - 1);
+        } else {
+            return true;
+        }
     }
-
-
-
 
 
     // ********************
@@ -68,7 +75,35 @@ public class MyMain {
     // Then we need to copy the rest of the array
 
     public static int[] merge(int[] arr1, int[] arr2) {
-        // YOUR CODE HERE
-        return null;
+        int[] arr = new int[arr1.length + arr2.length];
+        int index = 0;
+        int idx1 = 0;
+        int idx2 = 0;
+        while (index < arr.length){
+            if (idx1 >= arr1.length){
+                for (int i = idx2; i<arr2.length; i++){
+                    arr[index] = arr2[i];
+                    index++;
+                }
+            }
+            else if (idx2 >= arr2.length){
+                for (int i = idx1; i<arr1.length; i++){
+                    arr[index] = arr1[i];
+                    index++;
+                }
+            }
+            else if (arr1[idx1] < arr2[idx2]){
+                arr[index] = arr1[idx1];
+                index++;
+                idx1++;
+            }
+            else {
+                arr[index] = arr2[idx2];
+                idx2++;
+                index++;
+            }
+        }
+        return arr;
     }
+
 }
